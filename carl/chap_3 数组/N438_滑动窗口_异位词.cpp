@@ -4,7 +4,7 @@
  * @Author: silas
  * @Date: 2022-03-12 16:48:25
  * @LastEditors: silas
- * @LastEditTime: 2022-03-12 17:33:48
+ * @LastEditTime: 2022-03-12 17:36:20
  */
 #include <iostream>
 #include <vector>
@@ -22,36 +22,11 @@ vector<int> findAnagrams(string s, string p)
         {
             ans[p[i]-'a']++;
         }
-        cout<<"目标字符数组";
-        for(int i = 0 ;i < 26;i++)
-        {
-            cout<<ans[i]<<" ";
-        }
-        cout<<endl;
         for(int i = 0;i <s.size();i++ )
         {
             ver[s[i]-'a']++;
-            if(i >= p.size()) 
-            {
-                cout<<"现在字符数组";
-                for(int w = 0 ;w < 26;w++)
-                {
-                    cout<<ver[w]<<" ";
-                }
-                cout<<endl;
-                ver[s[i-p.size()]-'a']--;
-                cout<<"修正字符数组";
-                for(int w = 0 ;w < 26;w++)
-                {
-                    cout<<ver[w]<<" ";
-                }
-                cout<<endl;
-            }
-            if(ans == ver) 
-            {
-                cout<<i-p.size()+1<<endl;
-                res.push_back(i-p.size()+1);
-                }
+            if(i >= p.size()) ver[s[i-p.size()]-'a']--;
+            if(ans == ver) res.push_back(i-p.size()+1);
         }
 
         return res;
